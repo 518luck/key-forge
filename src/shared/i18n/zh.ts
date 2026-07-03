@@ -1,0 +1,40 @@
+export const t = {
+  appName: 'Key Forge',
+  /** 密码视图 */
+  length: '长度',
+  charset: '字符',
+  digits: '数字',
+  uppercase: '大写',
+  lowercase: '小写',
+  symbols: '特殊符号',
+  excludeAmbiguous: '排除易混淆字符',
+  excludeChars: '排除字符',
+  excludeCharsPlaceholder: '输入要排除的字符，如 "< 空格',
+  regenerate: '重新生成',
+  copy: '复制',
+  copied: '已复制',
+  noCharset: '请至少选择一种字符集',
+  /** 历史 */
+  history: '历史记录',
+  clearHistory: '清空全部历史',
+  justNow: '刚刚',
+  minutesAgo: (n: number) => `${n} 分钟前`,
+  hoursAgo: (n: number) => `${n} 小时前`,
+  daysAgo: (n: number) => `${n} 天前`,
+  historyEmpty: '暂无历史记录',
+  /** 设置 */
+  settings: '设置',
+  back: '返回',
+  defaultParams: '默认参数',
+  defaultLength: '默认长度',
+  defaultCharset: '默认字符集',
+  defaultExcludeChars: '默认排除字符',
+  passphraseSection: '历史',
+  historyLimit: '保留条数',
+  about: '关于',
+  aboutText: 'Key Forge v1.0 · 全本地 · 零网络请求',
+  /** 右键菜单 */
+  contextGenerate: '生成强密码并复制',
+  /** 通知 */
+  notifCopied: '已复制到剪贴板',
+} as const
