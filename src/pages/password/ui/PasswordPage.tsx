@@ -6,8 +6,9 @@ import { Switch } from "@/shared/ui/switch";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
+import { ThemeToggle } from "@/shared/ui/theme-toggle";
 import { cn } from "@/shared/ui/lib/utils";
-import type { Settings as SettingsType } from "@/shared/types";
+import type { Settings as SettingsType, Theme } from "@/shared/types";
 import { LENGTH_MAX, LENGTH_MIN } from "@/shared/config";
 import { t } from "@/shared/i18n/zh";
 import { usePasswordGenerator } from "@/features/generate-password";
@@ -18,9 +19,14 @@ import { HistoryPanel } from "@/widgets/history-panel";
 interface PasswordPageProps {
   settings: SettingsType;
   onOpenSettings: () => void;
+  onThemeChange: (theme: Theme) => void;
 }
 
-export function PasswordPage({ settings, onOpenSettings }: PasswordPageProps) {
+export function PasswordPage({
+  settings,
+  onOpenSettings,
+  onThemeChange,
+}: PasswordPageProps) {
   const { config, updateConfig, regenerate, password } = usePasswordGenerator(
     settings.password,
   );
@@ -45,14 +51,17 @@ export function PasswordPage({ settings, onOpenSettings }: PasswordPageProps) {
         <h1 className="flex items-center gap-1.5 text-base font-semibold">
           {t.appName}
         </h1>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onOpenSettings}
-          title={t.settings}
-        >
-          <Settings />
-        </Button>
+        <div className="flex items-center gap-1">
+          <ThemeToggle theme={settings.theme} onChange={onThemeChange} />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onOpenSettings}
+            title={t.settings}
+          >
+            <Settings />
+          </Button>
+        </div>
       </header>
 
       <main className="flex flex-1 flex-col gap-4 px-4 pb-4">

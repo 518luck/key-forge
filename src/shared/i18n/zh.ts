@@ -25,6 +25,10 @@ export const t = {
   /** 设置 */
   settings: '设置',
   back: '返回',
+  /** 主题 */
+  themeLight: '浅色',
+  themeDark: '深色',
+  themeSystem: '跟随系统',
   defaultParams: '默认参数',
   defaultLength: '默认长度',
   defaultCharset: '默认字符集',

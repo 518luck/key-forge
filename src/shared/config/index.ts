@@ -1,4 +1,4 @@
-import type { Settings } from '@/shared/types'
+import type { Settings, Theme } from '@/shared/types'
 
 /** 密码长度范围 */
 export const LENGTH_MIN = 8
@@ -12,6 +12,9 @@ export const HISTORY_LIMIT_DEFAULT = 20
 
 /** 易混淆字符集合 */
 export const AMBIGUOUS_CHARS = "0Oo1lI|`'\""
+
+/** 默认主题 */
+export const DEFAULT_THEME: Theme = 'system'
 
 /** 默认设置 */
 export const DEFAULT_SETTINGS: Settings = {
@@ -27,6 +30,7 @@ export const DEFAULT_SETTINGS: Settings = {
     excludeChars: '',
   },
   historyLimit: HISTORY_LIMIT_DEFAULT,
+  theme: DEFAULT_THEME,
 }
 
 /** storage key */

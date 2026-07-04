@@ -12,6 +12,7 @@ import { Checkbox } from '@/shared/ui/checkbox'
 import { Input } from '@/shared/ui/input'
 import { Label } from '@/shared/ui/label'
 import { Separator } from '@/shared/ui/separator'
+import { ThemeToggle } from '@/shared/ui/theme-toggle'
 import type { Settings as SettingsType } from '@/shared/types'
 import {
   HISTORY_LIMIT_MAX,
@@ -39,11 +40,17 @@ export function SettingsPage({
   return (
     <div className="flex h-full flex-col">
       {/* 标题栏 */}
-      <header className="flex items-center gap-2 px-4 py-3">
-        <Button variant="ghost" size="icon" onClick={onBack} title={t.back}>
-          <ArrowLeft />
-        </Button>
-        <h1 className="text-base font-semibold">{t.settings}</h1>
+      <header className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" onClick={onBack} title={t.back}>
+            <ArrowLeft />
+          </Button>
+          <h1 className="text-base font-semibold">{t.settings}</h1>
+        </div>
+        <ThemeToggle
+          theme={settings.theme}
+          onChange={(theme) => onUpdate({ theme })}
+        />
       </header>
 
       <main className="flex flex-1 flex-col gap-4 px-4 pb-4">

@@ -13,12 +13,17 @@ export interface PasswordConfig {
   excludeChars: string
 }
 
+/** 主题模式 */
+export type Theme = 'light' | 'dark' | 'system'
+
 /** 设置（持久化到 chrome.storage.sync） */
 export interface Settings {
   /** 密码默认参数 */
   password: PasswordConfig
   /** 历史记录保留条数 */
   historyLimit: number
+  /** 主题模式 */
+  theme: Theme
 }
 
 /** 历史记录项 */

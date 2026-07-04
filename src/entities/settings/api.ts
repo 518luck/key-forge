@@ -23,5 +23,6 @@ function mergeSettings(base: Settings, partial?: Partial<Settings>): Settings {
       flags: { ...base.password.flags, ...partial.password?.flags },
     },
     historyLimit: partial.historyLimit ?? base.historyLimit,
+    theme: partial.theme ?? base.theme,
   }
 }
