@@ -1,52 +1,56 @@
-import { Copy, RefreshCw, Settings } from 'lucide-react'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { Slider } from '@/shared/ui/slider'
-import { Switch } from '@/shared/ui/switch'
-import { Checkbox } from '@/shared/ui/checkbox'
-import { Input } from '@/shared/ui/input'
-import { Label } from '@/shared/ui/label'
-import { cn } from '@/shared/ui/lib/utils'
-import type { Settings as SettingsType } from '@/shared/types'
-import { LENGTH_MAX, LENGTH_MIN } from '@/shared/config'
-import { t } from '@/shared/i18n/zh'
-import { usePasswordGenerator } from '@/features/generate-password'
-import { useCopy } from '@/features/copy-result'
-import { useHistory } from '@/features/manage-history'
-import { HistoryPanel } from '@/widgets/history-panel'
+import { Copy, RefreshCw, Settings } from "lucide-react";
+import { Button } from "@/shared/ui/button";
+import { Card } from "@/shared/ui/card";
+import { Slider } from "@/shared/ui/slider";
+import { Switch } from "@/shared/ui/switch";
+import { Checkbox } from "@/shared/ui/checkbox";
+import { Input } from "@/shared/ui/input";
+import { Label } from "@/shared/ui/label";
+import { cn } from "@/shared/ui/lib/utils";
+import type { Settings as SettingsType } from "@/shared/types";
+import { LENGTH_MAX, LENGTH_MIN } from "@/shared/config";
+import { t } from "@/shared/i18n/zh";
+import { usePasswordGenerator } from "@/features/generate-password";
+import { useCopy } from "@/features/copy-result";
+import { useHistory } from "@/features/manage-history";
+import { HistoryPanel } from "@/widgets/history-panel";
 
 interface PasswordPageProps {
-  settings: SettingsType
-  onOpenSettings: () => void
+  settings: SettingsType;
+  onOpenSettings: () => void;
 }
 
 export function PasswordPage({ settings, onOpenSettings }: PasswordPageProps) {
   const { config, updateConfig, regenerate, password } = usePasswordGenerator(
     settings.password,
-  )
-  const { copy, copied } = useCopy()
-  const history = useHistory(settings.historyLimit)
+  );
+  const { copy, copied } = useCopy();
+  const history = useHistory(settings.historyLimit);
 
   const handleRegenerate = () => {
-    regenerate(config)
-  }
+    regenerate(config);
+  };
 
   const handleCopy = () => {
     if (password) {
-      copy(password)
-      history.add(password)
+      copy(password);
+      history.add(password);
     }
-  }
+  };
 
   return (
     <div className="flex h-full flex-col">
       {/* 标题栏 */}
       <header className="flex items-center justify-between px-4 py-3">
         <h1 className="flex items-center gap-1.5 text-base font-semibold">
-          <span>🔑</span>
           {t.appName}
         </h1>
-        <Button variant="ghost" size="icon" onClick={onOpenSettings} title={t.settings}>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onOpenSettings}
+          title={t.settings}
+        >
           <Settings />
         </Button>
       </header>
@@ -76,22 +80,30 @@ export function PasswordPage({ settings, onOpenSettings }: PasswordPageProps) {
             <CharsetCheck
               label={t.digits}
               checked={config.flags.digits}
-              onChange={(v) => updateConfig({ flags: { ...config.flags, digits: v } })}
+              onChange={(v) =>
+                updateConfig({ flags: { ...config.flags, digits: v } })
+              }
             />
             <CharsetCheck
               label={t.uppercase}
               checked={config.flags.uppercase}
-              onChange={(v) => updateConfig({ flags: { ...config.flags, uppercase: v } })}
+              onChange={(v) =>
+                updateConfig({ flags: { ...config.flags, uppercase: v } })
+              }
             />
             <CharsetCheck
               label={t.lowercase}
               checked={config.flags.lowercase}
-              onChange={(v) => updateConfig({ flags: { ...config.flags, lowercase: v } })}
+              onChange={(v) =>
+                updateConfig({ flags: { ...config.flags, lowercase: v } })
+              }
             />
             <CharsetCheck
               label={t.symbols}
               checked={config.flags.symbols}
-              onChange={(v) => updateConfig({ flags: { ...config.flags, symbols: v } })}
+              onChange={(v) =>
+                updateConfig({ flags: { ...config.flags, symbols: v } })
+              }
             />
           </div>
           <div className="flex items-center gap-2">
@@ -120,8 +132,8 @@ export function PasswordPage({ settings, onOpenSettings }: PasswordPageProps) {
         {/* 结果框 */}
         <Card
           className={cn(
-            'flex items-center gap-2 px-3 py-3',
-            !password && 'justify-center',
+            "flex items-center gap-2 px-3 py-3",
+            !password && "justify-center",
           )}
         >
           {password ? (
@@ -133,7 +145,12 @@ export function PasswordPage({ settings, onOpenSettings }: PasswordPageProps) {
               >
                 {password}
               </code>
-              <Button variant="ghost" size="icon" className="size-8 shrink-0" onClick={handleCopy}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-8 shrink-0"
+                onClick={handleCopy}
+              >
                 {copied ? <RefreshCw /> : <Copy />}
               </Button>
             </>
@@ -143,7 +160,11 @@ export function PasswordPage({ settings, onOpenSettings }: PasswordPageProps) {
         </Card>
 
         {/* 重新生成 */}
-        <Button variant="outline" onClick={handleRegenerate} className="self-end">
+        <Button
+          variant="outline"
+          onClick={handleRegenerate}
+          className="self-end"
+        >
           <RefreshCw data-icon="inline-start" />
           {t.regenerate}
         </Button>
@@ -157,7 +178,7 @@ export function PasswordPage({ settings, onOpenSettings }: PasswordPageProps) {
         />
       </main>
     </div>
-  )
+  );
 }
 
 /** 字符集复选框（带 label） */
@@ -166,14 +187,17 @@ function CharsetCheck({
   checked,
   onChange,
 }: {
-  label: string
-  checked: boolean
-  onChange: (v: boolean) => void
+  label: string;
+  checked: boolean;
+  onChange: (v: boolean) => void;
 }) {
   return (
     <div className="flex items-center gap-2">
-      <Checkbox checked={checked} onCheckedChange={(v) => onChange(v === true)} />
+      <Checkbox
+        checked={checked}
+        onCheckedChange={(v) => onChange(v === true)}
+      />
       <Label className="cursor-pointer text-sm">{label}</Label>
     </div>
-  )
+  );
 }
