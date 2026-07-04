@@ -16,7 +16,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "types": ["chrome", "vitest/globals"],
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
